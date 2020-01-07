@@ -1,0 +1,32 @@
+{
+  "name": "antd-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react-dom": "^16.9.4",
+    "less": "^3.10.3",
+    "parcel": "^1.12.4",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "@use-dura/core": "^1.0.0",
+    "@use-dura/immer": "^1.0.0",
+    "@use-dura/loading": "^1.0.0",
+    "@use-dura/types": "^1.0.0",
+    "antd": "^3.26.6",
+    "autoprefixer": "^9.7.3",
+    "formik": "^2.1.1",
+    "formik-antd": "^1.7.0",
+    "postcss-modules": "^1.4.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
