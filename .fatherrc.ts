@@ -12,6 +12,6 @@ export default {
     'loading',
     'core',
     'immer',
-    'loading'
+    'taro'
   ]
 }

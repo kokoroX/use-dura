@@ -34,7 +34,7 @@ function pluginHandler(model: Model<any>, value: Plugin) {
 
 export default function usePlusDura<M extends Model>(model: M, options?: UseDuraOptions) {
   const { plugins = [], onError } = options || {};
-  const finalModel: M = useMemo(() => plugins.reduce(pluginHandler, model), []);
+  const finalModel = useMemo(() => plugins.reduce(pluginHandler, model), []);
   return useDura(finalModel, onError) as [
     M['state'],
     Dispatch<any>,
