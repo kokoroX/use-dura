@@ -1,4 +1,4 @@
-import { merge } from 'lodash';
+import merge from 'lodash/merge';
 import { Dispatch, useMemo } from 'react';
 
 import { ActionCenter, Model, Plugin, UseDuraOptions } from '@use-dura/types';
