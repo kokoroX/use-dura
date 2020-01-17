@@ -1,6 +1,6 @@
 {
   "name": "@use-dura/loading",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.2-alpha.0",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "@use-dura/types": "^0.0.1-alpha.2",
+    "@use-dura/types": "^0.0.2-alpha.0",
     "father-build": "^1.17.1",
     "lodash": "^4.17.15"
   }

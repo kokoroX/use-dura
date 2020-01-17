@@ -1,6 +1,6 @@
 {
   "name": "antd-example",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.2-alpha.0",
   "description": "",
   "private": true,
   "main": "index.js",
@@ -18,10 +18,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "@use-dura/core": "^0.0.1-alpha.2",
-    "@use-dura/immer": "^0.0.1-alpha.2",
-    "@use-dura/loading": "^0.0.1-alpha.2",
-    "@use-dura/types": "^0.0.1-alpha.2",
+    "@use-dura/core": "^0.0.2-alpha.0",
+    "@use-dura/immer": "^0.0.2-alpha.0",
+    "@use-dura/loading": "^0.0.2-alpha.0",
+    "@use-dura/types": "^0.0.2-alpha.0",
     "antd": "^3.26.6",
     "autoprefixer": "^9.7.3",
     "formik": "^2.1.1",
