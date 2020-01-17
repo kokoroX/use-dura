@@ -1,4 +1,6 @@
-import { keys, merge } from 'lodash';
+import keys from 'lodash/keys';
+import merge from 'lodash/merge';
+// import { keys, merge } from 'lodash';
 import { Dispatch, useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 
 import { ActionCenter, Model } from '@use-dura/types';
