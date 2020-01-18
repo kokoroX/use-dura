@@ -14,7 +14,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "@babel/runtime": "^7.7.7",
     "father-build": "^1.17.1"
   }
