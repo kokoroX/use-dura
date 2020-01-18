@@ -1,6 +1,6 @@
 {
   "name": "@use-dura/loading",
-  "version": "0.0.2-alpha.2",
+  "version": "0.0.2-alpha.3",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
