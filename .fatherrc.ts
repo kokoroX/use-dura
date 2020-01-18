@@ -6,7 +6,7 @@ const extraBabelPlugins = process.env.BUILD_TYPE === 'react' ? reactBabelPlugins
 
 export default {
   extraBabelPlugins,
-  runtimeHelpers: true,
+  runtimeHelpers: false,
   pkgs: [
     'types',
     'loading',

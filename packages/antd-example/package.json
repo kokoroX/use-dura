@@ -17,7 +17,6 @@
     "typescript": "^3.7.4"
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.7",
     "@use-dura/core": "^0.0.2-alpha.1",
     "@use-dura/immer": "^0.0.2-alpha.0",
     "@use-dura/loading": "^0.0.2-alpha.0",
