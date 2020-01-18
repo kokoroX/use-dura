@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@use-dura/types": "^0.0.2-alpha.0",
+    "@use-dura/types": "^0.0.2-alpha.2",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
