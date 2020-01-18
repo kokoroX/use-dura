@@ -1,4 +1,6 @@
-import { entries, keys, merge } from 'lodash';
+import entries from 'lodash/entries';
+import keys from 'lodash/keys';
+import merge from 'lodash/merge';
 
 import { EffectMap, Model, Plugin } from '@use-dura/types';
 
