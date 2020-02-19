@@ -1,6 +1,6 @@
 {
   "name": "@use-dura/immer",
-  "version": "0.0.2-alpha.2",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@use-dura/types": "^0.0.2-alpha.2",
+    "@use-dura/types": "^1.0.0",
     "immer": "^5.1.0",
     "lodash": "^4.17.15"
   },

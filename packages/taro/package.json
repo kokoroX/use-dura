@@ -1,6 +1,6 @@
 {
   "name": "@use-dura/taro",
-  "version": "0.0.2-alpha.2",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -20,7 +20,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@use-dura/core": "^0.0.2-alpha.2",
+    "@use-dura/core": "^1.0.0",
     "babel-plugin-module-resolver": "^4.0.0"
   }
 }
