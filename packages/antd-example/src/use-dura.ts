@@ -3,12 +3,12 @@ import { Dispatch } from 'react';
 import originUseDura from '@use-dura/core';
 import { createImmerPlugin } from '@use-dura/immer';
 import { createLoadingPlugin, ExtractLoadingState } from '@use-dura/loading';
-import { ActionCenter, Model } from '@use-dura/types';
+import { ActionCreator, Model } from '@use-dura/types';
 
 function useDura<M extends Model>(model: M): [
   M['state'] & ExtractLoadingState<M>,
   Dispatch<any>,
-  ActionCenter<M>,
+  ActionCreator<M>,
 ] {
   const options = {
     plugins: [createImmerPlugin(), createLoadingPlugin(model)],

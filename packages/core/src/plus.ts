@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import { Dispatch, useMemo } from 'react';
 
-import { ActionCenter, Model, Plugin, UseDuraOptions } from '@use-dura/types';
+import { ActionCreator, Model, Plugin, UseDuraOptions } from '@use-dura/types';
 
 import { useDura } from './core';
 
@@ -38,6 +38,6 @@ export default function usePlusDura<M extends Model>(model: M, options?: UseDura
   return useDura(finalModel, onError) as [
     M['state'],
     Dispatch<any>,
-    ActionCenter<M>,
+    ActionCreator<M>,
   ];
 }

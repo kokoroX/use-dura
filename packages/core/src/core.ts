@@ -2,13 +2,13 @@ import keys from 'lodash/keys';
 import merge from 'lodash/merge';
 import { Dispatch, useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 
-import { ActionCenter, Model } from '@use-dura/types';
+import { ActionCreator, Model } from '@use-dura/types';
 
 /**
  * 将 effects 和 reducer 的方法调用转换成 redux 的 Action
  * @param model 
  */
-export function extractAction<M extends Model>(model: M): ActionCenter<M> {
+export function extractAction<M extends Model>(model: M): ActionCreator<M> {
   const { reducers, effects } = model;
   return keys(merge(reducers(), effects({})))
     .map((reducerKey: string) => ({
@@ -48,8 +48,8 @@ function handleModelReducer<M extends Model>(model: M, onError?: any) {
 export function useDura<M extends Model<any>>(
   model: M,
   onError?: any,
-): [M['state'], Dispatch<any>, ActionCenter<M>] {
-  const actionCenter = useMemo(() => extractAction(model), [model.effects, model.reducers]);
+): [M['state'], Dispatch<any>, ActionCreator<M>] {
+  const actionCreator = useMemo(() => extractAction(model), [model.effects, model.reducers]);
   const reducer = useMemo(() => handleModelReducer(model, onError), []);
   const [state, originDispatch] = useReducer(reducer, undefined, () => model.state);
   const lastState = useRef(state);
@@ -62,7 +62,7 @@ export function useDura<M extends Model<any>>(
       const asyncHandlers = model.effects({
         dispatch,
         getState,
-        actionCenter,
+        actionCreator,
       });
       const { type } = action || {};
       const asyncHandler = (type && asyncHandlers[type]) || null;
@@ -74,5 +74,5 @@ export function useDura<M extends Model<any>>(
     },
     [model.effects, getState],
   );
-  return [state, dispatch, actionCenter];
+  return [state, dispatch, actionCreator];
 }

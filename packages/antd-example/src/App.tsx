@@ -39,11 +39,11 @@ const model = {
       state.form = payload;
     }
   }),
-  effects: ({ actionCenter, dispatch, getState }) => ({
+  effects: ({ actionCreator, dispatch, getState }) => ({
     async fetchPet(id: string) {
       const petRes = await mockFetchOnceAPi(id);
-      // 这里的 actionCenter 没有类型提示
-      dispatch(actionCenter.setForm(petRes));
+      // 这里的 actionCreator 没有类型提示
+      dispatch(actionCreator.setForm(petRes));
     },
     async save(form: State) {
       console.log(form);
@@ -57,13 +57,13 @@ const sexOptions: CheckboxOptionType[] = [
 ]
 
 const App = () => {
-  const [state, dispatch, actionCenter] = useDura(model);
+  const [state, dispatch, actionCreator] = useDura(model);
   useEffect(() => {
-    dispatch(actionCenter.fetchPet('id'));
+    dispatch(actionCreator.fetchPet('id'));
   }, [dispatch]);
 
   const handleSubmit = (values, formikHelper: FormikHelpers<any>) => {
-    dispatch(actionCenter.save(values));
+    dispatch(actionCreator.save(values));
     formikHelper.setSubmitting(false);
   };
   

@@ -32,7 +32,7 @@ export type EffectMap = {
   [name: string]: Effect;
 };
 
-export declare type EffectFunction = (params: { dispatch?: any, actionCenter?: any, getState?: any }) => EffectMap;
+export declare type EffectFunction = (params: { dispatch?: any, actionCreator?: any, getState?: any }) => EffectMap;
 
 export type Model<S = any> = {
   state?: S;
@@ -57,19 +57,19 @@ export type ReviewReducders<R extends ReducerMap<S>, S> = {
 };
 
 /**
- * 用于获取 actionCenter 中的 reducers
+ * 用于获取 ActionCreator 中的 reducers
  */
 export type ExtractReducerActions<M extends Model> = ReviewReducders<ReturnType<M['reducers']>, ReturnType<M['state']>>;
 
 /**
- * 用于获取 actionCenter 中的 effects
+ * 用于获取 ActionCreator 中的 effects
  */
 export type ExtractEffectActions<M extends Model> = ReviewEffects<ReturnType<M['effects']>>;
 
 /**
  * 用于调用 effects 和 reducer 的对象
  */
-export type ActionCenter<M extends Model> = ExtractReducerActions<M> & ExtractEffectActions<M>;
+export type ActionCreator<M extends Model> = ExtractReducerActions<M> & ExtractEffectActions<M>;
 
 export type ExcludeTypeAction = {
   [name: string]: any;
