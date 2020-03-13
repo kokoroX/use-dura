@@ -1,3 +1,3 @@
-import useDura from '@use-dura/core';
+import useDura from './plus';
 
 export default useDura;
