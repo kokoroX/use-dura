@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@tarojs/taro": "^2.0.0-beta.14",
+    "@use-dura/types": "^1.0.0",
     "father-build": "^1.17.1",
     "lodash": "^4.17.15"
   },
