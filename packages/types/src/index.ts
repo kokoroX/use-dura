@@ -10,7 +10,7 @@ export type Reducer<S, P = any, M = any> = (
   state: S,
   payload: P,
   meta: M
-) => void;
+) => S;
 
 /**
  * {
@@ -26,6 +26,8 @@ export type ReducerMap<S> = {
   [name: string]: Reducer<S>;
 };
 
+export type StateFunction<S> = () => S;
+
 export type ReducerFcuntion<S> = () => ReducerMap<S>;
 
 export type EffectMap = {
@@ -35,7 +37,7 @@ export type EffectMap = {
 export declare type EffectFunction = (params: { dispatch?: any, actionCreator?: any, getState?: any }) => EffectMap;
 
 export type Model<S = any> = {
-  state?: S;
+  state?: StateFunction<S>;
   reducers?: ReducerFcuntion<S>;
   effects?: EffectFunction;
 };
@@ -107,3 +109,36 @@ export type UseDuraOptions = {
   plugins?: Plugin[];
   onError?: any;
 }
+
+function mergeModel<M1 extends Model, M2 extends Model>(model1: M1, model2: M2): {
+  state: ReturnType<M1['state']> | ReturnType<M2['state']>,
+  reducers: ReturnType<M1['reducers']> | ReturnType<M2['reducers']>,
+  effects: ReturnType<M1['effects']> | ReturnType<M2['effects']>,
+}
+function mergeModel(...models: Model[]) {
+  const mergeObj = models.reduce((prev, current) => {
+    if (current.state) prev.state.push(current.state);
+    if (current.reducers) prev.reducers.push(current.reducers);
+    if (current.effects) prev.effects.push(current.effects);
+    return prev;
+  }, {
+    state: [],
+    reducers: [],
+    effects: [],
+  });
+  return {
+    state: (...args) => mergeObj.state.reduce((prev, current) => ({ ...prev, ...current(...args) }), {}),
+    reducers: (...args) => mergeObj.reducers.reduce((prev, current) => ({ ...prev, ...current(...args) }), {}),
+    effects: (...args) => mergeObj.effects.reduce((prev, current) => ({ ...prev, ...current(...args) }), {}),
+  }
+}
+
+const modelA = {
+  state: () => ({ a: 1 })
+}
+const modelB = {
+  state: () => ({ b: 2 })
+}
+
+const result = mergeModel(modelA, modelB);
+// result.state

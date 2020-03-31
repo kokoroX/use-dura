@@ -1,5 +1,5 @@
 import merge from 'lodash/merge';
-import { Dispatch, useMemo } from 'react';
+import { Dispatch, FC, useMemo } from 'react';
 
 import { ActionCreator, Model, Plugin, UseDuraOptions } from '@use-dura/types';
 
@@ -35,9 +35,5 @@ function pluginHandler(model: Model<any>, value: Plugin) {
 export default function usePlusDura<M extends Model>(model: M, options?: UseDuraOptions) {
   const { plugins = [], onError } = options || {};
   const finalModel = useMemo(() => plugins.reduce(pluginHandler, model), []);
-  return useDura(finalModel, onError) as [
-    M['state'],
-    Dispatch<any>,
-    ActionCreator<M>,
-  ];
+  return useDura(finalModel, onError) as { state: ReturnType<M['state']>, dispatch: Dispatch<any>, actionCreator: ActionCreator<M> };
 }

@@ -1,9 +1,9 @@
 import merge from 'lodash/merge';
+import { Dispatch, useMemo } from 'react';
 
-import { Dispatch, useMemo } from '@tarojs/taro';
 import { ActionCreator, Model, Plugin, UseDuraOptions } from '@use-dura/types';
 
-import useDura from './use-dura';
+import { useDura } from './core';
 
 // import { createLoadingPlugin, ExtractLoadingState } from './loading';
 
@@ -35,9 +35,5 @@ function pluginHandler(model: Model<any>, value: Plugin) {
 export default function usePlusDura<M extends Model>(model: M, options?: UseDuraOptions) {
   const { plugins = [], onError } = options || {};
   const finalModel = useMemo(() => plugins.reduce(pluginHandler, model), []);
-  return useDura(finalModel, onError) as [
-    M['state'],
-    Dispatch<any>,
-    ActionCreator<M>,
-  ];
+  return useDura(finalModel, onError) as { state: ReturnType<M['state']>, dispatch: Dispatch<any>, actionCreator: ActionCreator<M> };
 }

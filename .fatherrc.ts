@@ -5,6 +5,7 @@ const taroBabelPlugins = [
 const extraBabelPlugins = process.env.BUILD_TYPE === 'react' ? reactBabelPlugins : taroBabelPlugins;
 
 export default {
+  esm: 'babel',
   extraBabelPlugins,
   runtimeHelpers: false,
   pkgs: [

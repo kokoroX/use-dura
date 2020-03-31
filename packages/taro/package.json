@@ -1,9 +1,8 @@
 {
   "name": "@use-dura/taro",
-  "version": "1.0.1",
+  "version": "2.0.0-alpha.4",
   "description": "",
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "father-build --cjs --esm"
@@ -17,6 +16,7 @@
   "dependencies": {
     "@tarojs/taro": "^2.0.0-beta.14",
     "@use-dura/types": "^1.0.0",
+    "adapter-taro": "^1.0.3",
     "father-build": "^1.17.1",
     "lodash": "^4.17.15"
   },

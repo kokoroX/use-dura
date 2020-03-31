@@ -49,17 +49,9 @@ export function useDura<M extends Model<any>>(
   model: M,
   onError?: any,
 ): { state: ReturnType<M['state']>, dispatch: Dispatch<any>, actionCreator: ActionCreator<M> } {
-  const modelState = model.state || (() => ({}));
-  const modelReducers = model.reducers || (() =>({}));
-  const modelEffects = model.effects || (() =>({}));
-  const currentModel = {
-    state: modelState,
-    reducers: modelReducers,
-    effects: modelEffects,
-  };
-  const actionCreator = useMemo(() => extractAction(currentModel), [currentModel]);
-  const reducer = useMemo(() => handleModelReducer(currentModel, onError), [currentModel]);
-  const [state, originDispatch] = useReducer(reducer, undefined, currentModel.state);
+  const actionCreator = useMemo(() => extractAction(model), [model.effects, model.reducers]);
+  const reducer = useMemo(() => handleModelReducer(model, onError), []);
+  const [state, originDispatch] = useReducer(reducer, undefined, model.state);
   const lastState = useRef(state);
   useEffect(() => {
     lastState.current = state;
@@ -67,7 +59,7 @@ export function useDura<M extends Model<any>>(
   const getState = useCallback((() => lastState.current), []);
   const dispatch = useCallback(
     action => {
-      const asyncHandlers = currentModel.effects({
+      const asyncHandlers = model.effects({
         dispatch,
         getState,
         actionCreator,
@@ -80,7 +72,7 @@ export function useDura<M extends Model<any>>(
         return originDispatch(action);
       }
     },
-    [currentModel.effects, getState],
+    [model.effects, getState],
   );
   return { state, dispatch, actionCreator };
 }
