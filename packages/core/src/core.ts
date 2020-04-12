@@ -82,5 +82,5 @@ export function useDura<M extends Model<any>>(
     },
     [currentModel.effects, getState],
   );
-  return { state, dispatch, actionCreator };
+  return { state, dispatch, actionCreator } as { state: ReturnType<M['state']>, dispatch: Dispatch<any>, actionCreator: ActionCreator<M> };
 }

@@ -21,7 +21,7 @@ function pluginHandler(model: Model<any>, value: Plugin) {
 
   if (extraModel) {
     const originState = finalModel.state;
-    if (extraModel.state) finalModel.state = merge(originState, extraModel.state);
+    if (extraModel.state) finalModel.state = () => ({ ...originState(), ...extraModel.state() });
     const originReducers = finalModel.reducers;
     if (extraModel.reducers)
       finalModel.reducers = (...args) => merge(originReducers(...args), extraModel.reducers(...args));

@@ -60,7 +60,7 @@ export const createLoadingPlugin = function (model: Model<any>): Plugin {
       return res;
     },
     extraModel: {
-      state: initialState,
+      state: () => initialState,
       reducers: () => ({
         ['loading/startLoading']: (
           state: State,

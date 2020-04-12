@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "father --esm --cjs",
+    "build": "father build --esm --cjs",
     "test": "father test"
   },
   "keywords": [],
