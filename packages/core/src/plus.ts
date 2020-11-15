@@ -1,14 +1,13 @@
 import merge from 'lodash/merge';
 import { Dispatch, FC, useMemo } from 'react';
 
-import { ActionCreator, Model, Plugin, UseDuraOptions } from '@use-dura/types';
-
 import { useDura } from './core';
+import { ActionCreator, Model, Plugin, UseDuraOptions } from '@use-dura/types';
 
 // import { createLoadingPlugin, ExtractLoadingState } from './loading';
 
 /**
- * 
+ *
  * @param model Model
  * @param value Plugin
  */
@@ -18,10 +17,10 @@ function pluginHandler(model: Model<any>, value: Plugin) {
   if (wrapModel) {
     finalModel = wrapModel(model);
   }
-  
+
   if (extraModel) {
     const originState = finalModel.state;
-    if (extraModel.state) finalModel.state = merge(originState, extraModel.state);
+    if (extraModel.state) finalModel.state = function () { return { ...originState(), ...extraModel.state() } };
     const originReducers = finalModel.reducers;
     if (extraModel.reducers)
       finalModel.reducers = (...args) => merge(originReducers(...args), extraModel.reducers(...args));

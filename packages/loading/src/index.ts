@@ -8,7 +8,7 @@ export const createLoadingPlugin = function (model: Model<any>): Plugin {
   const initialState = {
     loading: {
       global: false,
-      effects: keys(model.effects({}))
+      effects: keys(model.effects({} as any))
         .map((ename: string) => ({ [ename]: false }))
         .reduce(merge, {}),
     },
@@ -21,16 +21,16 @@ export const createLoadingPlugin = function (model: Model<any>): Plugin {
       const res = {
         ...currentModel,
         effects: ({ dispatch, ...resetParams }) =>
-          entries(currentModel.effects({ dispatch, ...resetParams }))
+          entries(currentModel.effects({ dispatch, ...resetParams } as any))
             .map(([k, v]) => ({
               [k]: async (payload, meta) => {
                 const start = () =>
-                    dispatch({
-                      type: 'loading/startLoading',
-                      payload: {
-                        effectName: k,
-                      },
-                    }),
+                  dispatch({
+                    type: 'loading/startLoading',
+                    payload: {
+                      effectName: k,
+                    },
+                  }),
                   end = () =>
                     dispatch({
                       type: 'loading/endLoading',
@@ -62,7 +62,7 @@ export const createLoadingPlugin = function (model: Model<any>): Plugin {
     extraModel: {
       state: () => initialState,
       reducers: () => ({
-        ['loading/startLoading']: (
+        'loading/startLoading': (
           state: State,
           payload: {
             effectName: string;
@@ -80,7 +80,7 @@ export const createLoadingPlugin = function (model: Model<any>): Plugin {
             },
           };
         },
-        ['loading/endLoading']: (
+        'loading/endLoading': (
           state: State,
           payload: {
             effectName: string;

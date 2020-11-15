@@ -6,11 +6,11 @@ import { ActionCreator, Model } from '@use-dura/types';
 
 /**
  * 将 effects 和 reducer 的方法调用转换成 redux 的 Action
- * @param model 
+ * @param model
  */
 export function extractAction<M extends Model>(model: M): ActionCreator<M> {
   const { reducers, effects } = model;
-  return keys(merge(reducers(), effects({})))
+  return keys(merge(reducers(), effects({} as any)))
     .map((reducerKey: string) => ({
       [reducerKey]: (payload: any, meta: any) => ({
         type: reducerKey,
@@ -40,6 +40,14 @@ function handleModelReducer<M extends Model>(model: M, onError?: any) {
   };
 };
 
+async function handleCombineError(options, onError) {
+  try {
+    return await options.callback(options.params.payload, options.params.meta);
+  } catch (e) {
+    onError(e);
+  }
+}
+
 /**
  * useDura 入口
  * @param model state、reducers、effects 集合
@@ -48,17 +56,21 @@ function handleModelReducer<M extends Model>(model: M, onError?: any) {
 export function useDura<M extends Model<any>>(
   model: M,
   onError?: any,
-): { state: ReturnType<M['state']>, dispatch: Dispatch<any>, actionCreator: ActionCreator<M> } {
+): {
+  state: ReturnType<M['state']>;
+  dispatch: Dispatch<any>;
+  actionCreator: ActionCreator<M>;
+} {
   const modelState = model.state || (() => ({}));
-  const modelReducers = model.reducers || (() =>({}));
-  const modelEffects = model.effects || (() =>({}));
+  const modelReducers = model.reducers || (() => ({}));
+  const modelEffects = model.effects || (() => ({}));
   const currentModel = {
     state: modelState,
     reducers: modelReducers,
     effects: modelEffects,
   };
   const actionCreator = useMemo(() => extractAction(currentModel), [currentModel]);
-  const reducer = useMemo(() => handleModelReducer(currentModel, onError), [currentModel]);
+  const reducer = useMemo(() => handleModelReducer(currentModel, onError), []);
   const [state, originDispatch] = useReducer(reducer, undefined, currentModel.state);
   const lastState = useRef(state);
   useEffect(() => {
@@ -75,12 +87,16 @@ export function useDura<M extends Model<any>>(
       const { type } = action || {};
       const asyncHandler = (type && asyncHandlers[type]) || null;
       if (asyncHandler) {
-        return asyncHandler(action.payload, action.meta);
+        return handleCombineError({ callback: asyncHandler, params: { payload: action.payload, meta: action.meta } }, onError);
       } else {
         return originDispatch(action);
       }
     },
-    [currentModel.effects, getState],
+    [currentModel, getState, actionCreator, onError],
   );
-  return { state, dispatch, actionCreator } as { state: ReturnType<M['state']>, dispatch: Dispatch<any>, actionCreator: ActionCreator<M> };
+  return { state, dispatch, actionCreator } as {
+    state: ReturnType<M['state']>;
+    dispatch: Dispatch<any>;
+    actionCreator: ActionCreator<M>;
+  };
 }

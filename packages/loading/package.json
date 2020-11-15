@@ -1,6 +1,6 @@
 {
   "name": "@use-dura/loading",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -20,5 +20,8 @@
   },
   "devDependencies": {
     "father-build": "^1.17.1"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.billbear.cn/repository/npm/"
   }
 }
