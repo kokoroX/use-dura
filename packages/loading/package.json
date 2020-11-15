@@ -1,6 +1,6 @@
 {
   "name": "@use-dura/loading",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@use-dura/types": "^1.0.0",
+    "@use-dura/types": "^2.1.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {

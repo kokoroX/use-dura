@@ -1,6 +1,6 @@
 {
   "name": "@use-dura/taro",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@tarojs/taro": "^2.0.0-beta.14",
-    "@use-dura/types": "^1.0.0",
+    "@use-dura/types": "^2.1.0",
     "adapter-taro": "^1.0.3",
     "father-build": "^1.17.1",
     "lodash": "^4.17.15"

@@ -1,6 +1,6 @@
 {
   "name": "antd-example",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "",
   "private": true,
   "main": "index.js",
@@ -18,9 +18,9 @@
   },
   "dependencies": {
     "@use-dura/core": "^1.0.0",
-    "@use-dura/immer": "^1.0.0",
+    "@use-dura/immer": "^2.1.0",
     "@use-dura/loading": "^1.0.0",
-    "@use-dura/types": "^1.0.0",
+    "@use-dura/types": "^2.1.0",
     "antd": "^3.26.6",
     "autoprefixer": "^9.7.3",
     "formik": "^2.1.1",
