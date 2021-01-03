@@ -1,6 +1,6 @@
 {
   "name": "@use-dura/core",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -16,10 +16,12 @@
   "license": "ISC",
   "dependencies": {
     "@use-dura/types": "^2.1.0",
-    "lodash": "^4.17.15",
-    "react": "^16.12.0"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "father-build": "^1.17.1"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0"
   }
 }
